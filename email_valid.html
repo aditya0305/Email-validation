@@ -42,7 +42,7 @@ function Validate()
          atpos = emailID.indexOf("@");
          dotpos = emailID.lastIndexOf(".");
          
-         if (atpos < 1 || ( dotpos<atpos-3 ) || dotpos >= emailID.length -2) {
+         if (atpos < 1 || ( dotpos<atpos-3 ) || dotpos+2 >= emailID.length) {
             alert("Please enter correct email ID")
             document.myForm.EMail.focus() ;
             return false;
