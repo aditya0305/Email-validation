@@ -2,52 +2,31 @@
 <head> 
 <script type="text/javascript"> 
 
-function Validate()                              
-{ 
-    var name = document.forms["myForm"]["Name"];            
-    var email = document.forms["myForm"]["EMail"]; 
-    var Desig = document.forms["myForm"]["Desig"]; 
-    var Company = document.forms["myForm"]["Company"]; 
-  //  var password = document.forms["myForm"]["Password"]; 
-   // var address = document.forms["myForm"]["Address"]; 
+function Validation()
+{
+  var name = _.trim(document.forms["myForm"]["Name"].value); 
+    var email =_.trim(document.forms["myForm"]["EMail"].value); 
+    var Desig =_.trim(document.forms["myForm"]["Desig"].value); 
+    var Company =_.trim(document.forms["myForm"]["Company"].value);
+        var atpos='@';
+        var dotpos='.';
 
-    if (name.value == "")                                
-    { 
-        window.alert("Please enter your name."); 
-        name.focus(); 
-        return false; 
-    } 
-    
-    if (email.value == "")                               
-    { 
-        window.alert("Please enter e-mail address."); 
-        email.focus(); 
-        return false; 
-    } 
-
-    if (Desig.value == "")                       
-    { 
-        window.alert("Please enter your Designation."); 
-        phone.focus(); 
-        return false; 
-    } 
-  if (Company.value == "")                       
-    { 
-        window.alert("Please enter your Company name."); 
-        phone.focus(); 
-        return false; 
-    } 
   
-  var emailID = document.myForm.EMail.value;
-         atpos = emailID.indexOf("@");
-         dotpos = emailID.lastIndexOf(".");
-         
-         if (atpos < 1 || ( dotpos<atpos-3 ) || dotpos+2 >= emailID.length) {
-            alert("Please enter correct email ID")
-            document.myForm.EMail.focus() ;
-            return false;
+  if(_.isEmpty(name) || _.isEmpty(email) || _.isEmpty(Desig)
+      || _.isEmpty(Company))
+    { 
+      alert("All fileds are Requered");
+    }
+  
+  else if (email.startsWith('@') || ((email.lastIndexOf(dotpos))< (email.indexOf(atpos)) -2) ||((email.lastIndexOf(dotpos))+2>= email.length))
+        {
+            alert("Please enter correct email ID" );
          }
-    return true; 
+  else
+    {
+      alert("All data submited");
+    }
+    
 }
 </script> 
 
@@ -234,46 +213,47 @@ input[type=checkbox]:checked + label {
 </style></head> 
 
 <body> 
-<form action = "http://3one4.lazyeight.design/" name = "myForm" onsubmit=" return Validate()" ;>
+                                              
+<form  name = "myForm" href="#" action="#" onsubmit="return false">
 <div class="container">
-    <div class="row">
-            
-    </div>
-    <div class="row input-container">
-            <div class="col-xs-12">
+	<div class="row">
+			
+	</div>
+	<div class="row input-container">
+			<div class="col-xs-12">
         
-                <div class="styled-input wide">
-            <td><input type = "text" name="Name" /></td>
-                    <label>Name</label> 
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <div class="styled-input wide">
-                    <input type="text" name="EMail" />
-                    <label>Email</label> 
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <div class="styled-input wide">
-                    <input type="text" name="Desig" />
-                    <label>Designation</label> 
-                </div>
-            </div>
-            <div class="col-xs-12">
-                <div class="styled-input wide">
-                    <input type="text" name="Company" />
-                    <label>Company</label>
-                </div>
-            </div>
+				<div class="styled-input wide">
+            <td><input type = "text" id="Name" /></td>
+					<label>Name</label> 
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<div class="styled-input wide">
+					<input type="text" id="EMail" />
+					<label>Email</label> 
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<div class="styled-input wide">
+					<input type="text" id="Desig" />
+					<label>Designation</label> 
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<div class="styled-input wide">
+					<input type="text" id="Company" />
+					<label>Company</label>
+				</div>
+			</div>
    
     <div class="col-xs-12">
-    <div style="display:flex; justify-content:flex-end; width:100%; padding:0;">
-        <!--  <input style="float: right;" type="submit" name="submit" value="Submit" >-->
-         <a href="#">  <button style="align:right;"class="btn btn-sm btn-primary" name="check_out">Submit</button></a>
+    <div style="display:flex; justify-content:flex-end; width:100%; padding:0; ">
+      
+           <button style="align:right; cursor: pointer;"class="btn btn-sm btn-primary" onclick="Validation()" name="submit">Submit</button></a>
            
-    
-            </div>
-    </div>
+	
+			</div>
+	</div>
 </div>
 </form>
 </body> 
